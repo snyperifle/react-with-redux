@@ -9,11 +9,13 @@ import { createStore, applyMiddleware } from 'redux';
 
 //============================================================= new
 import createSagaMiddleware from 'redux-saga';
-import { watchAgeUp, watchAgeDown } from './sagas/saga';
+import sagas from './sagas/saga';
 const sagaMiddleware = createSagaMiddleware();
-const store = createStore(reducer, applyMiddleware(sagaMiddleware));
-sagaMiddleware.run(watchAgeUp);
-sagaMiddleware.run(watchAgeDown);
+const store = createStore(
+  reducer,
+  applyMiddleware(sagaMiddleware)
+);
+sagaMiddleware.run(sagas);
 //=============================================================
 ReactDOM.render(
   <Provider store={store}>
